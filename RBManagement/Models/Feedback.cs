@@ -25,6 +25,7 @@ namespace RBManagement.Models
         public int ACCID { get; set; }
         public Nullable<int> ParentID { get; set; }
         public string Content { get; set; }
+        public System.DateTime CreatedDate { get; set; }
         public bool Status { get; set; }
     
         public virtual Account Account { get; set; }

@@ -27,6 +27,7 @@ namespace RBManagement.Models
         public int ACCID { get; set; }
         public int PRJID { get; set; }
         public string Name { get; set; }
+        public System.DateTime CreatedDate { get; set; }
         public bool Publish { get; set; }
         public bool Status { get; set; }
     

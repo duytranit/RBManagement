@@ -24,17 +24,19 @@ namespace RBManagement.Models.Entities
                 ID = pr.ID,
                 Name = pr.Name,
                 Status = pr.Status,
+                CreatedDate = pr.CreatedDate,
                 CATID = pr.CATID,
                 CATName = pr.ProjectCategory.Name,
                 ACCID = pr.ACCID,
                 ACCUsername = pr.Account.Username
             });
         }
-        public void Insert (string _name, bool _status, int _categoryID, int _accountID)
+        public void Insert (string _name, DateTime _createdDate, bool _status, int _categoryID, int _accountID)
         {
             Models.RBManagementEntities db = new RBManagementEntities();
             Models.Project project = new Models.Project();
             project.Name = _name;
+            project.CreatedDate = _createdDate;
             project.Status = _status;
             project.CATID = _categoryID;
             project.ACCID = _accountID;
@@ -42,11 +44,12 @@ namespace RBManagement.Models.Entities
             db.SaveChanges();
             db.Dispose();
         }
-        public void Update (int _projectID, string _name, bool _status, int _categoryID, int _accountID)
+        public void Update (int _projectID, string _name, DateTime _createdDate, bool _status, int _categoryID, int _accountID)
         {
             Models.RBManagementEntities db = new RBManagementEntities();
             Models.Project project = db.Projects.FirstOrDefault(pr => pr.ID == _projectID);
             project.Name = _name;
+            project.CreatedDate = _createdDate;
             project.Status = _status;
             project.CATID = _categoryID;
             project.ACCID = _accountID;

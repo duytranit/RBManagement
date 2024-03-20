@@ -27,9 +27,9 @@ namespace RBManagement.Models
     
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountCategory> AccountCategories { get; set; }
-        public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<ProjectCategory> ProjectCategories { get; set; }
         public virtual DbSet<ResourceCategory> ResourceCategories { get; set; }
+        public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
     }

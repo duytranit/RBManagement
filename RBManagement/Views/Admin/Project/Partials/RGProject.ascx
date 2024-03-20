@@ -7,6 +7,7 @@
     OnPageSizeChanged="rgProject_PageSizeChanged"
     OnItemDataBound="rgProject_ItemDataBound"
     OnItemCreated="rgProject_ItemCreated"
+    OnItemCommand="rgProject_ItemCommand"
     OnDeleteCommand="rgProject_DeleteCommand">
     <HeaderStyle Font-Bold="true" HorizontalAlign="Center" />
     <MasterTableView NoMasterRecordsText="Không tìm thấy dữ liệu phù hợp" DataKeyNames="ID" EditMode="PopUp"
@@ -24,7 +25,14 @@
             <telerik:GridHyperLinkColumn HeaderText="Dự án" DataTextField="Name"
                 DataNavigateUrlFields="ID" DataNavigateUrlFormatString="~/Resource/{0}"
                 CurrentFilterFunction="Contains" AutoPostBackOnFilter="true"></telerik:GridHyperLinkColumn>
+            <telerik:GridBoundColumn HeaderText="Ngày tạo" DataField="CreatedDate"
+                DataFormatString="{dd/MM/yyyy}"
+                CurrentFilterFunction="Contains" AutoPostBackOnFilter="true">
+                <ItemStyle HorizontalAlign="Center" />
+            </telerik:GridBoundColumn>
             <telerik:GridBoundColumn HeaderText="Loại dự án" DataField="CATName"
+                CurrentFilterFunction="Contains" AutoPostBackOnFilter="true"></telerik:GridBoundColumn>
+            <telerik:GridBoundColumn HeaderText="Người tạo" DataField="ACCUsername"
                 CurrentFilterFunction="Contains" AutoPostBackOnFilter="true"></telerik:GridBoundColumn>
             <telerik:GridBoundColumn HeaderText="Trạng thái" DataField="Status">
                 <FilterTemplate>
