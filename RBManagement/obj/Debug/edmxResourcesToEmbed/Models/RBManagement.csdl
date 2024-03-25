@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RBManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AccountCategory" Relationship="Self.FK_Account_Category" FromRole="Account" ToRole="AccountCategory" />
+    <NavigationProperty Name="Feedbacks" Relationship="RBManagementModel.FK_Feedback_Account" FromRole="Account" ToRole="Feedback" />
+    <NavigationProperty Name="Projects" Relationship="RBManagementModel.FK_Project_Account" FromRole="Account" ToRole="Project" />
+    <NavigationProperty Name="Resources" Relationship="RBManagementModel.FK_Resource_Account" FromRole="Account" ToRole="Resource" />
+  </EntityType>
+  <EntityType Name="AccountCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Category" FromRole="AccountCategory" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="ProjectCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Projects" Relationship="RBManagementModel.FK_Project_Category" FromRole="ProjectCategory" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="ResourceCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Resources" Relationship="RBManagementModel.FK_Resource_Category" FromRole="ResourceCategory" ToRole="Resource" />
+  </EntityType>
+  <Association Name="FK_Account_Category">
+    <End Role="AccountCategory" Type="Self.AccountCategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="CATID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RBManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="AccountCategories" EntityType="Self.AccountCategory" />
+    <EntitySet Name="ProjectCategories" EntityType="Self.ProjectCategory" />
+    <EntitySet Name="ResourceCategories" EntityType="Self.ResourceCategory" />
+    <AssociationSet Name="FK_Account_Category" Association="Self.FK_Account_Category">
+      <End Role="AccountCategory" EntitySet="AccountCategories" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <EntitySet Name="Feedbacks" EntityType="RBManagementModel.Feedback" />
+    <EntitySet Name="Projects" EntityType="RBManagementModel.Project" />
+    <EntitySet Name="Resources" EntityType="RBManagementModel.Resource" />
+    <AssociationSet Name="FK_Feedback_Account" Association="RBManagementModel.FK_Feedback_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Account" Association="RBManagementModel.FK_Project_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Account" Association="RBManagementModel.FK_Resource_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Resource" EntitySet="Resources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedback_Parent" Association="RBManagementModel.FK_Feedback_Parent">
+      <End Role="Feedback" EntitySet="Feedbacks" />
+      <End Role="Feedback1" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedback_Resource" Association="RBManagementModel.FK_Feedback_Resource">
+      <End Role="Resource" EntitySet="Resources" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Category" Association="RBManagementModel.FK_Project_Category">
+      <End Role="ProjectCategory" EntitySet="ProjectCategories" />
+      <End Role="Project" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Project" Association="RBManagementModel.FK_Resource_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Resource" EntitySet="Resources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Category" Association="RBManagementModel.FK_Resource_Category">
+      <End Role="ResourceCategory" EntitySet="ResourceCategories" />
+      <End Role="Resource" EntitySet="Resources" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resource_Parent" Association="RBManagementModel.FK_Resource_Parent">
+      <End Role="Resource" EntitySet="Resources" />
+      <End Role="Resource1" EntitySet="Resources" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RESID" Type="Int32" Nullable="false" />
+    <Property Name="ACCID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="RBManagementModel.FK_Feedback_Account" FromRole="Feedback" ToRole="Account" />
+    <NavigationProperty Name="Feedback1" Relationship="RBManagementModel.FK_Feedback_Parent" FromRole="Feedback" ToRole="Feedback1" />
+    <NavigationProperty Name="Feedback2" Relationship="RBManagementModel.FK_Feedback_Parent" FromRole="Feedback1" ToRole="Feedback" />
+    <NavigationProperty Name="Resource" Relationship="RBManagementModel.FK_Feedback_Resource" FromRole="Feedback" ToRole="Resource" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATID" Type="Int32" Nullable="false" />
+    <Property Name="ACCID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="RBManagementModel.FK_Project_Account" FromRole="Project" ToRole="Account" />
+    <NavigationProperty Name="ProjectCategory" Relationship="RBManagementModel.FK_Project_Category" FromRole="Project" ToRole="ProjectCategory" />
+    <NavigationProperty Name="Resources" Relationship="RBManagementModel.FK_Resource_Project" FromRole="Project" ToRole="Resource" />
+  </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="ACCID" Type="Int32" Nullable="false" />
+    <Property Name="PRJID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Publish" Type="Boolean" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="RBManagementModel.FK_Resource_Account" FromRole="Resource" ToRole="Account" />
+    <NavigationProperty Name="Feedbacks" Relationship="RBManagementModel.FK_Feedback_Resource" FromRole="Resource" ToRole="Feedback" />
+    <NavigationProperty Name="Project" Relationship="RBManagementModel.FK_Resource_Project" FromRole="Resource" ToRole="Project" />
+    <NavigationProperty Name="ResourceCategory" Relationship="RBManagementModel.FK_Resource_Category" FromRole="Resource" ToRole="ResourceCategory" />
+    <NavigationProperty Name="Resource1" Relationship="RBManagementModel.FK_Resource_Parent" FromRole="Resource" ToRole="Resource1" />
+    <NavigationProperty Name="Resource2" Relationship="RBManagementModel.FK_Resource_Parent" FromRole="Resource1" ToRole="Resource" />
+  </EntityType>
+  <Association Name="FK_Feedback_Account">
+    <End Type="RBManagementModel.Account" Role="Account" Multiplicity="1" />
+    <End Type="RBManagementModel.Feedback" Role="Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="ACCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Account">
+    <End Type="RBManagementModel.Account" Role="Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RBManagementModel.Project" Role="Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ACCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Account">
+    <End Type="RBManagementModel.Account" Role="Account" Multiplicity="1" />
+    <End Type="RBManagementModel.Resource" Role="Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="ACCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedback_Parent">
+    <End Type="RBManagementModel.Feedback" Role="Feedback" Multiplicity="0..1" />
+    <End Type="RBManagementModel.Feedback" Role="Feedback1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feedback">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Feedback1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedback_Resource">
+    <End Type="RBManagementModel.Resource" Role="Resource" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RBManagementModel.Feedback" Role="Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="RESID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Category">
+    <End Type="RBManagementModel.ProjectCategory" Role="ProjectCategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RBManagementModel.Project" Role="Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="CATID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Project">
+    <End Type="RBManagementModel.Project" Role="Project" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RBManagementModel.Resource" Role="Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="PRJID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Category">
+    <End Type="RBManagementModel.ResourceCategory" Role="ResourceCategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RBManagementModel.Resource" Role="Resource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResourceCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Resource">
+        <PropertyRef Name="CATID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resource_Parent">
+    <End Type="RBManagementModel.Resource" Role="Resource" Multiplicity="0..1" />
+    <End Type="RBManagementModel.Resource" Role="Resource1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Resource">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Resource1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

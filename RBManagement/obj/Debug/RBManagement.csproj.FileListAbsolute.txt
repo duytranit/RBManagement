@@ -1,6 +1,9 @@
 D:\Projects\RBManagement\RBManagement\bin\RBManagement.dll.config
 D:\Projects\RBManagement\RBManagement\bin\RBManagement.dll
 D:\Projects\RBManagement\RBManagement\bin\RBManagement.pdb
+D:\Projects\RBManagement\RBManagement\bin\EntityFramework.dll
+D:\Projects\RBManagement\RBManagement\bin\EntityFramework.SqlServer.dll
+D:\Projects\RBManagement\RBManagement\bin\Microsoft.AspNet.FriendlyUrls.dll
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Web.Design.dll
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Web.Device.Detection.dll
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Web.Spreadsheet.dll
@@ -14,6 +17,9 @@ D:\Projects\RBManagement\RBManagement\bin\Telerik.Windows.Zip.dll
 D:\Projects\RBManagement\RBManagement\bin\EnvDTE.dll
 D:\Projects\RBManagement\RBManagement\bin\Newtonsoft.Json.dll
 D:\Projects\RBManagement\RBManagement\bin\stdole.dll
+D:\Projects\RBManagement\RBManagement\bin\EntityFramework.xml
+D:\Projects\RBManagement\RBManagement\bin\EntityFramework.SqlServer.xml
+D:\Projects\RBManagement\RBManagement\bin\Microsoft.AspNet.FriendlyUrls.xml
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Web.Device.Detection.xml
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Web.Spreadsheet.xml
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Web.UI.xml
@@ -23,6 +29,7 @@ D:\Projects\RBManagement\RBManagement\bin\Telerik.Windows.Documents.Spreadsheet.
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.xml
 D:\Projects\RBManagement\RBManagement\bin\Telerik.Windows.Zip.xml
 D:\Projects\RBManagement\RBManagement\obj\Debug\RBManagement.csproj.AssemblyReference.cache
+D:\Projects\RBManagement\RBManagement\obj\Debug\RBManagement.dll.licenses
 D:\Projects\RBManagement\RBManagement\obj\Debug\RBManagement.csproj.CoreCompileInputs.cache
 D:\Projects\RBManagement\RBManagement\obj\Debug\RBManage.52A28526.Up2Date
 D:\Projects\RBManagement\RBManagement\obj\Debug\RBManagement.dll

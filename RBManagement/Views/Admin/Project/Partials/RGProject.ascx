@@ -1,6 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RGProject.ascx.cs" Inherits="RBManagement.Views.Admin.Project.Partials.RGProject" %>
 
+<telerik:RadAjaxManager ID="RadAjaxManager" runat="server">
+    <AjaxSettings>
+        <telerik:AjaxSetting AjaxControlID="rgProject">
+            <UpdatedControls>
+                <telerik:AjaxUpdatedControl ControlID="rgProject" />
+            </UpdatedControls>
+        </telerik:AjaxSetting>
+    </AjaxSettings>
+</telerik:RadAjaxManager>
+
 <telerik:RadGrid ID="rgProject" runat="server" EnableLinqExpressions="false" AutoGenerateColumns="false"
+    ShowStatusBar="true"
     AllowFilteringByColumn="true" AllowPaging="true" AllowSorting="true"
     OnNeedDataSource="rgProject_NeedDataSource"
     OnPageIndexChanged="rgProject_PageIndexChanged"
@@ -10,7 +21,7 @@
     OnItemCommand="rgProject_ItemCommand"
     OnDeleteCommand="rgProject_DeleteCommand">
     <HeaderStyle Font-Bold="true" HorizontalAlign="Center" />
-    <MasterTableView NoMasterRecordsText="Không tìm thấy dữ liệu phù hợp" DataKeyNames="ID" EditMode="PopUp"
+    <MasterTableView NoMasterRecordsText="Không tìm thấy dữ liệu phù hợp" DataKeyNames="ID" EditMode="PopUp" CommandItemDisplay="Top"
         EditFormSettings-EditColumn-ShowFilterIcon="false" EditFormSettings-EditColumn-ShowSortIcon="true">
         <Columns>
             <telerik:GridEditCommandColumn UniqueName="EditCommandColumn">
@@ -26,7 +37,7 @@
                 DataNavigateUrlFields="ID" DataNavigateUrlFormatString="~/Resource/{0}"
                 CurrentFilterFunction="Contains" AutoPostBackOnFilter="true"></telerik:GridHyperLinkColumn>
             <telerik:GridBoundColumn HeaderText="Ngày tạo" DataField="CreatedDate"
-                DataFormatString="{dd/MM/yyyy}"
+                DataFormatString="{0:dd/MM/yyyy}"
                 CurrentFilterFunction="Contains" AutoPostBackOnFilter="true">
                 <ItemStyle HorizontalAlign="Center" />
             </telerik:GridBoundColumn>
@@ -60,7 +71,7 @@
                 <ItemStyle HorizontalAlign="Center" Width="70px" />
             </telerik:GridButtonColumn>
         </Columns>
-        <EditFormSettings UserControlName="~\Partials\Account\Form.ascx" EditFormType="WebUserControl">
+        <EditFormSettings UserControlName="~\Views\Admin\Project\Partials\FormProject.ascx" EditFormType="WebUserControl">
             <EditColumn UniqueName="EditCommandColumn1">
             </EditColumn>
         </EditFormSettings>

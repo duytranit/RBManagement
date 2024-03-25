@@ -214,6 +214,13 @@
     <Compile Include="Views\Admin\Project\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\Project\Partials\FormProject.ascx.cs">
+      <DependentUpon>FormProject.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\Project\Partials\FormProject.ascx.designer.cs">
+      <DependentUpon>FormProject.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Admin\Project\Partials\RGProject.ascx.cs">
       <DependentUpon>RGProject.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -303,6 +310,7 @@
     <Content Include="Styles\styles.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Admin\Project\Index.aspx" />
+    <Content Include="Views\Admin\Project\Partials\FormProject.ascx" />
     <Content Include="Views\Admin\Project\Partials\RGProject.ascx" />
     <Content Include="web.config" />
     <Content Include="MasterPage.Master" />
